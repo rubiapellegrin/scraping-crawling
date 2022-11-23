@@ -6,7 +6,8 @@ server.get('/', async (request,response)=> {
             const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.goto('https://moodle.passofundo.ifsul.edu.br/');
-
+        await page.screenshot({path: 'pagina.png'});
+        await page.pdf({path: 'Pagina.pdf', format: 'A4'});   
         const dados = await page.evaluate(()=>{   //pega os dados
             return{
                 tittle: document.querySelector('.no-overflow span').innerHTML,
